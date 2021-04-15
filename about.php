@@ -42,35 +42,101 @@
     .content {
         margin-top: 60px;
     }
-
+    
     .footer div {
-        min-height: 150px;
         width: 100%;
-        position: absolute;
-        left: 0px;
-        bottom: 0px;
+        min-height: 95px;
     }
 
     .about-us,
     .member {
-        background-color: blue;
-        border: brown solid 1px;
         padding: 20px;
     }
 
     .member-card {
-        background-color: red;
-        border: brown solid 1px;
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
 
     .member-card-01 {
-        background-color: pink;
-        border: brown solid 1px;
+        margin: 0px;
+        background-color: #0048EE;
     }
 
     .member-card-07 {
-        background-color: green;
-        border: brown solid 1px;
+        margin: 0px;
+        background-color: #FF7400;
+    }
+    .member-card-08 {
+        margin: 0px;
+        background-color: #FF0700;
+    }
+    .member-card-21 {
+        margin: 0px;
+        background-color: #8F0AD9;
+    }
+
+    .member-card-27 {
+        margin: 0px;
+        background-color: #FFDD00;
+    }
+    .member-card-32 {
+        margin: 0px;
+        background-color: #00E800;
+    }
+
+    .card {
+        border: black solid 3px;
+        box-shadow: 0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%);
+    }
+
+    .head-photo {
+        width: 120px;
+        height: 120px;
+        border: black solid 2px;
+        border-radius: 100cm;
+        margin: 5px 1px;
+
+    }
+
+    .head-photo p {
+        padding-top: 35px;
+        font-size: 36px;
+        font-weight: bolder;
+    }
+    .introduce p{
+        margin-top: 20px;
+        font-size: 20px;
+    }
+    .head-photo-01{
+        
+        background-color: #3471FE;
+        border: #0048EE solid 2px;
+    }
+    .head-photo-07{
+        
+        background-color: #FFA55B;
+        border: #FF7400 solid 2px;
+    }
+    .head-photo-08{
+        
+        background-color: #FF5F5B;
+        border: #FF0700 solid 2px;
+    }
+    .head-photo-21{
+        
+        background-color: #B058E0;
+        border: #8F0AD9 solid 2px;
+    }
+    .head-photo-27{
+        
+        background-color: #FFE95B;
+        border: #FFDD00 solid 2px;
+    }
+    .head-photo-32{
+        
+        background-color: #10FF10;
+        border: #00E800 solid 2px;
     }
 </style>
 
@@ -94,12 +160,121 @@
         <div class="member w3-center">
             <h1>Member</h1>
             <div class="member-card w3-row">
-                <div class="w3-col s12 m6 l4 member-card-01">01xl3bp6</div>
-                <div class="w3-col s12 m6 l4 member-card-07">07dk au/6</div>
-                <div class="w3-col s12 m6 l4 member-card-01">08xl3bp6</div>
-                <div class="w3-col s12 m6 l4 member-card-07">21dk au/6</div>
-                <div class="w3-col s12 m6 l4 member-card-01">27xl3bp6</div>
-                <div class="w3-col s12 m6 l4 member-card-07">32dk au/6</div>
+                <!-- 自製醜名片卡 -->
+                <div class="w3-col s12 m6 l4" name="01">
+                    <div class="card w3-container member-card-01">
+                        <div class="w3-row">
+                            <div class="w3-col l4 m12 s12">
+                                <div class="head-photo head-photo-01">
+                                    <p class="w3-center">01</p>
+                                </div>
+                            </div>
+                            <div class="w3-col l8 m12 s12">
+                                <div class="name">
+                                    <h1>老人</h1>
+                                </div>
+                                <div class="introduce">
+                                    <p>創始/公關/業務</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-col s12 m6 l4" name="07">
+                    <div class="card w3-container member-card-07">
+                        <div class="w3-row">
+                            <div class="w3-col l4 m12 s12">
+                                <div class="head-photo head-photo-07">
+                                    <p class="w3-center">07</p>
+                                </div>
+                            </div>
+                            <div class="w3-col l8 m12 s12">
+                                <div class="name">
+                                    <h1>NeizKilor</h1>
+                                </div>
+                                <div class="introduce">
+                                    <p>演員/業務/行政</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-col s12 m6 l4" name="08">
+                    <div class="card w3-container member-card-08">
+                        <div class="w3-row">
+                            <div class="w3-col l4 m12 s12">
+                                <div class="head-photo head-photo-08">
+                                    <p class="w3-center">08</p>
+                                </div>
+                            </div>
+                            <div class="w3-col l8 m12 s12">
+                                <div class="name">
+                                    <h1>Jarven</h1>
+                                </div>
+                                <div class="introduce">
+                                    <p>演員/企劃/公關</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-col s12 m6 l4" name="21">
+                    <div class="card w3-container member-card-21">
+                        <div class="w3-row">
+                            <div class="w3-col l4 m12 s12">
+                                <div class="head-photo head-photo-21">
+                                    <p class="w3-center">21</p>
+                                </div>
+                            </div>
+                            <div class="w3-col l8 m12 s12">
+                                <div class="name">
+                                    <h1>大丁</h1>
+                                </div>
+                                <div class="introduce">
+                                    <p>創始/企劃/剪輯</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-col s12 m6 l4" name="27">
+                    <div class="card w3-container member-card-27">
+                        <div class="w3-row">
+                            <div class="w3-col l4 m12 s12">
+                                <div class="head-photo head-photo-27">
+                                    <p class="w3-center">27</p>
+                                </div>
+                            </div>
+                            <div class="w3-col l8 m12 s12">
+                                <div class="name">
+                                    <h1>PIPI</h1>
+                                </div>
+                                <div class="introduce">
+                                    <p>科技/行政/財務</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-col s12 m6 l4" name="32">
+                    <div class="card w3-container member-card-32">
+                        <div class="w3-row">
+                            <div class="w3-col l4 m12 s12">
+                                <div class="head-photo head-photo-32">
+                                    <p class="w3-center">32</p>
+                                </div>
+                            </div>
+                            <div class="w3-col l8 m12 s12">
+                                <div class="name">
+                                    <h1>YouYuan</h1>
+                                </div>
+                                <div class="introduce">
+                                    <p>科技/行政/財務</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -110,7 +285,7 @@
     <!-- 頁底 -->
     <footer class="footer">
         <div class=" w3-card w3-dark-gray">
-            <p class="w3-display-middle">&copy; <?php echo date("Y"); ?> DISAPPEAR</p>
+            <p class="w3-center" style="padding-top: 40px;">&copy; <?php echo date("Y"); ?> DISAPPEAR</p>
         </div>
     </footer>
 
