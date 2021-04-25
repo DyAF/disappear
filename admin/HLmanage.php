@@ -51,8 +51,6 @@
         background-color: blue;
     }
 
-
-
     .tool-bar {
         top: 62px;
         padding-top: 10px;
@@ -86,28 +84,27 @@
 
     .update {
         padding-top: 120px;
+        padding-bottom: 128px;
         background-color: pink;
     }
 
-    table td,
-    table th {
+    .card {
+        margin-top: 10px;
+        margin-bottom: 10px;
         padding: 10px;
+        border: black solid 3px;
+        box-shadow: 0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%);
     }
 
-    .tag_label {
-        font-size: 12px;
-    }
 
-    .table-responsive {
-        display: block;
-        width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
+
+    .container {
+        width: 800px;
     }
 
     .del {
         padding-top: 120px;
+        padding-bottom: 128px;
         background-color: #5646;
     }
 </style>
@@ -135,33 +132,69 @@
     <div class="new" id="new">
         <h1 class="w3-center">新增精華</h1>
         <br>
-        <div class="w3-display-container" style="height:500px;">
+        <div class="container">
+            <div >
+                <form action="">
+                    <!-- 因鋪 -->
+                    <div class="w3-row">
+                        <div class="w3-col l2 m2 s12 w3-center"><label for="title"><b>影片標題</b> </label></div>
+                        <div class="w3-col l10 m10 s12"><input class="title_input" type="text"></div>
+                    </div>
+                    <div class="w3-row">
+                        <div class="w3-col l2 m2 s12 w3-center"><label for="title"><b>影片連結</b> </label></div>
+                        <div class="w3-col l10 m10 s12"><input class="YT_input" type="text"></div>
+                    </div>
+                    <!-- TEXT噁瑞 -->
+                    <div class="w3-row">
+                        <div class="w3-col l2 m2 s12 w3-center"><label for="introduce"><b>影片簡介</b> </label></div>
+                        <div class="w3-col l10 m10 s12"><textarea name="introduce" cols="65" rows="10"></textarea></div>
+                    </div>
+                    <!-- 檔案選擇 -->
+                    <div class="w3-row">
+                        <div class="w3-col l2 m2 s12 w3-center"><label for="introduce"><b>影片縮圖</b> </label></div>
+                        <div class="w3-col l10 m10 s12"><input type="file" id="myFile" name="filename"></div>
+                    </div>
+                    <!-- 標籤 -->
+                    <div class="w3-row">
+                        <div class="w3-col l2 m2 s12 w3-center"><label for="introduce"><b>影片標籤</b> </label></div>
+                        <div class="w3-col l10 m10 s12">
+                            <input type="checkbox"><label for="title">&ensp;全選&ensp;</label>
+                            <input type="checkbox"><label for="title">&ensp;01&ensp;</label>
+                            <input type="checkbox"><label for="title">&ensp;07&ensp;</label>
+                            <input type="checkbox"><label for="title">&ensp;08&ensp;</label>
+                            <input type="checkbox"><label for="title">&ensp;21&ensp;</label>
+                            <input type="checkbox"><label for="title">&ensp;27&ensp;</label>
+                            <input type="checkbox"><label for="title">&ensp;32&ensp;</label>
+                        </div>
+                    </div>
+                    <div class="w3-row w3-center" style="padding: 5px;"><button type="submit" class="btn btn-primary">新增</button></div>
+                </form>
+            </div>
+        </div>
 
-            <form class="w3-display-middle" action="" style="width:50%;">
-                <!-- 因鋪 -->
-                <div class="w3-row">
-                    <div class="w3-col l2 m2 s12 w3-center"><label for="title"><b>影片標題</b> </label></div>
-                    <div class="w3-col l10 m10 s12"><input class="title_input" type="text"></div>
+    </div>
+
+    <div class="update" id="update">
+        <h1 class="w3-center">修改精華</h1>
+        <br>
+        <div class="container">
+            <div class="card" style=" background:blanchedalmond;">
+                <div class="card-head w3-row">
+                    <div class="w3-col l4 m6 s12"><button class="w3-button w3-black">修改</button></div>
+                    <div class="w3-col l8 m6 s12"><button class="w3-button w3-black w3-right">儲存</button></div>
                 </div>
-                <div class="w3-row">
-                    <div class="w3-col l2 m2 s12 w3-center"><label for="title"><b>影片連結</b> </label></div>
-                    <div class="w3-col l10 m10 s12"><input class="YT_input" type="text"></div>
+                <div class="card-body w3-row">
+                    <div class="w3-col l4 m6 s12">照片</div>
+                    <div class="w3-col l8 m6 s12">
+                        <div><input type="text" style="margin: 5px;"></div>
+                        <div><input type="text" style="margin: 5px;"></div>
+                        <div><textarea name="" id="" cols="" rows="" style="margin: 5px;"></textarea></div>
+                    </div>
                 </div>
-                <!-- TEXT噁瑞 -->
-                <div class="w3-row">
-                    <div class="w3-col l2 m2 s12 w3-center"><label for="introduce"><b>影片簡介</b> </label></div>
-                    <div class="w3-col l10 m10 s12"><textarea name="introduce" cols="65" rows="10"></textarea></div>
-                </div>
-                <!-- 檔案選擇 -->
-                <div class="w3-row">
-                    <div class="w3-col l2 m2 s12 w3-center"><label for="introduce"><b>影片縮圖</b> </label></div>
-                    <div class="w3-col l10 m10 s12"><input type="file" id="myFile" name="filename"></div>
-                </div>
-                <!-- 標籤 -->
-                <div class="w3-row">
-                    <div class="w3-col l2 m2 s12 w3-center"><label for="introduce"><b>影片標籤</b> </label></div>
-                    <div class="w3-col l10 m10 s12">
-                        <input type="checkbox"><label for="title">&ensp;全選&ensp;</label>
+                <div class="card-foot w3-row">
+                    <div class="w3-col l4 m6 s12"><input type="file"></button></div>
+                    <div class="w3-col l8 m6 s12">
+                        <input type="checkbox" style="margin-left:10px;"><label for="title">&ensp;全選&ensp;</label>
                         <input type="checkbox"><label for="title">&ensp;01&ensp;</label>
                         <input type="checkbox"><label for="title">&ensp;07&ensp;</label>
                         <input type="checkbox"><label for="title">&ensp;08&ensp;</label>
@@ -170,55 +203,40 @@
                         <input type="checkbox"><label for="title">&ensp;32&ensp;</label>
                     </div>
                 </div>
-                <div class="w3-row w3-center" style="padding: 5px;"><button type="submit" class="btn btn-primary">新增</button></div>
-            </form>
+            </div>
         </div>
     </div>
 
-    <div class="update" id="update">
-        <h1 class="w3-center">修改精華</h1>
+    <div class="del" id="del">
+        <h1 class="w3-center">刪除精華</h1>
         <br>
-        <div class="table-responsive" >
-            <table class="w3-center">
-                <thead class="w3-gray">
-                    <tr class="w3-row">
-                        <th >-</th>
-                        <th >影片ID</th>
-                        <th >影片名稱</th>
-                        <th >影片連結</th>
-                        <th >影片縮圖</th>
-                        <th >影片簡介</th>
-                        <th >影片標籤</th>
-                        <th >-</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="w3-row">
-                        <td ><a href="javascript:void(0);" class="btn btn-secondary">修改按鈕</a></td>
-                        <td >01</td>
-                        <td ><input type="text" placeholder="影片名稱"></td>
-                        <td ><input type="text" placeholder="影片連結"></td>
-                        <td ><input type="file" style="width: 200px;"></td>
-                        <td ><textarea name="introduce" cols="" rows=""></textarea></td>
-                        <td >
-                            <input type="checkbox"><label class="tag_label" for="title">&ensp;全選&ensp;</label>
-                            <input type="checkbox"><label class="tag_label" for="title">&ensp;01&ensp;</label>
-                            <input type="checkbox"><label class="tag_label" for="title">&ensp;07&ensp;</label>
-                            <input type="checkbox"><label class="tag_label" for="title">&ensp;08&ensp;</label>
-                            <input type="checkbox"><label class="tag_label" for="title">&ensp;21&ensp;</label>
-                            <input type="checkbox"><label class="tag_label" for="title">&ensp;27&ensp;</label>
-                            <input type="checkbox"><label class="tag_label" for="title">&ensp;32&ensp;</label>
-                        </td>
-                        <td ><a href="javascript:void(0);" class="btn btn-secondary">儲存按鈕</a></td>
-                    </tr>
-                </tbody>
-
-
-            </table>
+        <div class="container">
+            <div class="card" style=" background:blanchedalmond;">
+                <div class="card-head w3-row">
+                    <div><button class="w3-button w3-black w3-right">刪除</button></div>
+                </div>
+                <div class="card-body w3-row">
+                    <div class="w3-col l4 m6 s12">照片</div>
+                    <div class="w3-col l8 m6 s12">
+                        <div><input type="text" style="margin: 5px;"></div>
+                        <div><input type="text" style="margin: 5px;"></div>
+                        <div><textarea name="" id="" cols="" rows="" style="margin: 5px;"></textarea></div>
+                    </div>
+                </div>
+                <div class="card-foot w3-row">
+                    <div class="w3-col l4 m6 s12"><input type="file"></button></div>
+                    <div class="w3-col l8 m6 s12">
+                        <input type="checkbox" style="margin-left:10px;"><label for="title">&ensp;全選&ensp;</label>
+                        <input type="checkbox"><label for="title">&ensp;01&ensp;</label>
+                        <input type="checkbox"><label for="title">&ensp;07&ensp;</label>
+                        <input type="checkbox"><label for="title">&ensp;08&ensp;</label>
+                        <input type="checkbox"><label for="title">&ensp;21&ensp;</label>
+                        <input type="checkbox"><label for="title">&ensp;27&ensp;</label>
+                        <input type="checkbox"><label for="title">&ensp;32&ensp;</label>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="del w3-center" id="del">
-        del
     </div>
 
 
