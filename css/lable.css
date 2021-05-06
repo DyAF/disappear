@@ -1,0 +1,48 @@
+.label.label--purple {
+    color: #f3f3f3;
+    background: #c80cee;
+    border-color: #b705fd;
+    }
+
+    .label.label--red {
+    color: #fff;
+    background: #e20000;
+    border-color: #ff1616;
+    }
+
+    .label.label--blue {
+    color: #fff;
+    background: #4169e1;
+    border-color: #6d8ce8;
+    }
+
+    .label.label--orange {
+    color: #000;
+    background: #ffae00;
+    border-color: #ff8a03;
+    }
+
+    .label.label--green {
+    color: #000;
+    background: #ccf9c8;
+    border-color: #f7fef6;
+    border-color: #bee8ba;
+    }
+
+    .label.label--yellow {
+        color: #000;
+        background: #ffcb00;
+        border-color: #ffd533;
+    }
+
+
+
+    .label {
+    display: inline-block;
+    padding: 1px .35em;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 80%;
+    line-height: 1.35;
+    text-decoration: none;
+    }
