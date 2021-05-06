@@ -1,3 +1,10 @@
+<?php
+include_once("../php/function.php");
+if (!isset($_SESSION['is_admin_login']) || !$_SESSION['is_admin_login']) {
+    header("Location:login.php");
+}
+$get_query_result = FB_query();
+?>
 <!DOCTYPE html>
 <html lang="zh-TW">
 
@@ -75,18 +82,23 @@
         border: black solid 3px;
         box-shadow: 0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%);
     }
+
+    .detail {
+        border: black solid 1px;
+        box-shadow: 0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%);
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .detail p {
+        padding-top: 10px;
+        padding-left: 5px;
+    }
 </style>
 
 <body>
     <!-- 頂端列 -->
-    <div class="header w3-top w3-bar w3-card w3-dark-gray">
-        <a href="#" class="w3-bar-item w3-display-left">Disappear</a>
-        <div class="w3-display-right w3-center">
-            <a href="#" class="w3-bar-item w3-padding-large">登出</a>
-            <a href="#" class="w3-bar-item w3-padding-large">精華管理</a>
-            <a href="#" class="w3-bar-item w3-padding-large active">留言管理</a>
-        </div>
-    </div>
+    <?php include_once("menu.php")?>
 
     <!-- 工具列 -->
     <div class="tool-bar w3-top">
@@ -105,26 +117,55 @@
         <h1 class="w3-center">留言管理</h1>
         <br>
         <div class="container">
-            <div class="card" style="background:blanchedalmond;">
-                <div class="card-head w3-row">
-                    <div class="w3-col l12 m12 s12"><span class="w3-tag w3-green w3-right">Done</span></div>
-                </div>
-                <div class="card-body w3-row">
-                    <div class="w3-col l2 m3 s12 w3-display-cotainer"><img class="w3-middle" style="padding-left:20px;padding-top:20px;" src="../image/none.png" alt=""></div>
-                    <div class="w3-col l10 m9 s12">
-                        <div>
-                            <p><b style="font-size:30px;">主旨</b></p>
+            <?php foreach ($get_query_result as $FB) : ?>
+                <div class="card" style="background:blanchedalmond;">
+                    <div class="card-head w3-row">
+                        <div class="w3-col l12 m12 s12"><span id="span_<?php echo $FB['ID'];?>" class="w3-tag w3-right <?php if ($FB['status'] == 1) : ?> w3-green<?php else : ?>w3-red<?php endif; ?>"><?php if ($FB['status'] == 1) : ?>Done<?php else : ?>undone<?php endif; ?></span></div>
+                    </div>
+                    <div class="card-body w3-row">
+                        <div class="w3-col l2 m3 s12 w3-display-cotainer"><img class="w3-middle" style="padding-left:20px;padding-top:20px;" src="<?php switch ($FB['type']):
+                                                                                                                                                        case 1: ?>../image/none.png<?php break;
+                                                                                                                                                                                                    case 2: ?>../image/mail.png<?php break;
+                                                                                                                                                                                                                                            case 3: ?>../image/phone.png<?php break;
+                                                                                                                                                                                                                                                                                endswitch; ?>" alt=""></div>
+                        <div class="w3-col l10 m9 s12">
+                            <div>
+                                <p><b style="font-size:30px;"><?php echo $FB['subject']; ?></b></p>
+                            </div>
+                            <div>
+                                <p style="padding-right:50px;min-height:50px"><?php echo $FB['content']; ?></p>
+                            </div>
                         </div>
-                        <div>
-                            <p style="padding-right:50px;">內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容容內容內容內容內容內容內容容內容內容內容內容內容內容</p>
+                    </div>
+                    <div class="card-foot w3-row">
+                        <div class="w3-col l12 m12 s12"><button class="w3-button w3-circle w3-teal w3-right" name="btn_plus" data-id="<?php echo $FB['ID']; ?>">+</button></div>
+                    </div>
+                    <div class="w3-row detail w3-hide" style="background-color: white;" id="div_detail_<?php echo $FB['ID']; ?>">
+                        <div class="w3-col l3 m3 s12" style="border-right: gray 2px soild;">
+                            <p><?php echo $FB['name']; ?></p>
+                        </div>
+                        <div class="w3-col l3 m3 s12">
+                            <p><?php echo $FB['email']; ?></p>
+                        </div>
+                        <div class="w3-col l3 m3 s12">
+                            <p><?php echo $FB['phone']; ?></p>
+                        </div>
+                        <div class="w3-col l1 m1 s12">
+                            <p>未回覆</p>
+                        </div>
+                        <div class="w3-col l1 m1 s12 ">
+                            <div class="form-check form-switch" style="padding-left: 3.5em;">
+                                <input class="form-check-input " type="checkbox" name="status" data-id="<?php echo $FB['ID'];?>" id="status_<?php echo $FB['ID'];?>" style="margin-top: 12px;">
+                            </div>
+                        </div>
+                        <div class="w3-col l1 m1 s12">
+                            <p>已回覆</p>
                         </div>
                     </div>
                 </div>
-                <div class="card-foot w3-row">
-                    <div class="w3-col l12 m12 s12"><button class="w3-button w3-circle w3-teal w3-right">+</button></div>
-                </div>
-            </div>
-            <div class="card" style="background:blanchedalmond;">
+            <?php endforeach; ?>
+
+            <!-- <div class="card" style="background:blanchedalmond;">
                 <div class="card-head w3-row">
                     <div class="w3-col l12 m12 s12"><span class="w3-tag w3-red w3-right">yet</span></div>
                 </div>
@@ -137,12 +178,12 @@
                         <div>
                             <p style="padding-right:50px;">內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容容內容內容內容內容內容內容容內容內容內容內容內容內容</p>
                         </div>
-                    </div>
+                    </div>`
                 </div>
                 <div class="card-foot w3-row">
                     <div class="w3-col l12 m12 s12"><button class="w3-button w3-circle w3-teal w3-right">+</button></div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -155,6 +196,93 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            
+            
+            //點開詳細資訊
+            $("[name=btn_plus]").click(function() {
+                var btn_id = $(this).attr("data-id");
+                //console.log(btn_id);
+                var div_detail_id = "#div_detail_" + btn_id;
+                if ($(div_detail_id).hasClass("w3-hide")) 
+                {
+                    $(div_detail_id).removeClass("w3-hide");
+                    $(div_detail_id).addClass("w3-show");
+                }
+                else
+                {
+                    $(div_detail_id).removeClass("w3-show");
+                    $(div_detail_id).addClass("w3-hide");
+                }
+
+            });
+            //回覆未回覆
+            $("[name=status]").click(function(){
+                var btn_id = $(this).attr("data-id");
+                var status_id = "#status_" + btn_id;
+                var span_id = "#span_" + btn_id;
+                if($(status_id).is(":checked") == true)
+                {
+                    $(span_id).removeClass("w3-red");
+                    $(span_id).addClass("w3-green");
+                    $(span_id).html("Done");
+                }
+                else
+                {
+                    $(span_id).removeClass("w3-green");
+                    $(span_id).addClass("w3-red");
+                    $(span_id).html("Undone");
+                }
+            });
+            //修改精華-儲存
+            $("[name=status]").blur(function() {
+                var btn_id = $(this).attr("data-id");
+                var status_id = "#status_" + btn_id;
+                var status;
+                if($(status_id).is(":checked") == true)
+                {
+                   status=1;
+                }
+                else
+                {
+                    status=0;
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: '../php/update_FB.php',
+                    data: {
+                        'ID': btn_id,
+                        'status': status
+                    },
+                    dataType: 'html',
+                    success: function(data) {
+
+                        //console.log(data);
+                        if (data == "狀態更新成功") {
+                            location.reload();
+                        } else {
+                            alert("狀態更新失敗，請F12");
+                            console.log(data);
+
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert("資料沒有傳過去");
+                        console.log(jqXHR, ResponseText);
+
+                    }
+                });
+                
+                
+                //return false;
+
+
+            });
+
+        });
+    </script>
 </body>
 
 </html>
