@@ -69,98 +69,93 @@
         font-weight: bolder;
         padding-left: 100px;
     }
-    form input,form select {
+
+    form input,
+    form select {
         border: solid 2px black;
         border-radius: 8px;
         padding: 5px;
         width: 250px;
     }
+
     form textarea {
         border: solid 2px black;
         border-radius: 8px;
         padding: 5px;
     }
-    form button
-    {
+
+    form button {
         margin-right: 152px;
     }
-    
 </style>
 
 <body>
     <!-- 頂端列 -->
-    <div class="header w3-top w3-bar w3-card w3-dark-gray">
-        <a href="#" class="w3-bar-item w3-display-left">Disappear</a>
-        <div class="w3-display-right w3-center">
-            <a href="#" class="w3-bar-item w3-padding-large">關於我們</a>
-            <a href="#" class="w3-bar-item w3-padding-large">精華片段</a>
-            <a href="#" class="w3-bar-item w3-padding-large active">聯絡我們</a>
-        </div>
-    </div>
+    <?php include_once("menu.php")?>
 
     <!-- 內容 -->
     <div class="content container">
         <div style="padding:5px;">
-        <form id="connect">
-            <div class="type w3-row">
-                <div class="w3-col l2 m2 s12">
-                    <label>回應方式</label>
+            <form id="connect" method="POST">
+                <div class="type w3-row">
+                    <div class="w3-col l2 m12 s12">
+                        <label>回應方式</label>
+                    </div>
+                    <div class="w3-col l10 m12 s12">
+                        <select name="option" id="type" required>
+                            <option value="" disabled selected>請選擇與您聯絡方式</option>
+                            <option value="1">無須回應</option>
+                            <option value="2">電子郵件</option>
+                            <option value="3">電話聯繫</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="w3-col l10 m10 s12">
-                    <select name="option">
-                        <option value="" disabled selected>請選擇與您聯絡方式</option>
-                        <option value="1">無須回應</option>
-                        <option value="2">電子郵件</option>
-                        <option value="3">電話聯繫</option>
-                    </select>
+                <div class="name w3-row">
+                    <div class="w3-col l2 m12 s12">
+                        <label>姓名</label>
+                    </div>
+                    <div class="w3-col l10 m12 s12">
+                        <input required placeholder="希望我們如何稱呼您" id="name">
+                    </div>
                 </div>
-            </div>
-            <div class="name w3-row">
-                <div class="w3-col l2 m2 s12">
-                    <label>姓名</label>
+                <div class="email w3-row">
+                    <div class="w3-col l2 m12 s12">
+                        <label>電子郵件</label>
+                    </div>
+                    <div class="w3-col l10 m12 s12">
+                        <input placeholder="輸入您的電子郵件" type="email"  id="email">
+                    </div>
                 </div>
-                <div class="w3-col l10 m10 s12">
-                    <input required placeholder="希望我們如何稱呼您">
-                </div>
-            </div>
-            <div class="email w3-row">
-                <div class="w3-col l2 m2 s12">
-                    <label>電子郵件</label>
-                </div>
-                <div class="w3-col l10 m10 s12">
-                    <input placeholder="輸入您的電子郵件">
-                </div>
-            </div>
-            <div class="phone w3-row">
-                <div class="w3-col l2 m2 s12">
-                    <label>連絡電話</label>
-                </div>
-                <div class="w3-col l10 m10 s12">
-                    <input placeholder="輸入您的聯絡電話">
-                </div>
+                <div class="phone w3-row">
+                    <div class="w3-col l2 m12 s12">
+                        <label>連絡電話</label>
+                    </div>
+                    <div class="w3-col l10 m12 s12">
+                        <input placeholder="輸入您的聯絡電話" type="tel" id="phone">
+                    </div>
 
 
-            </div>
-            <div class="subject w3-row">
-                <div class="w3-col l2 m2 s12">
-                    <label>主旨</label>
                 </div>
-                <div class="w3-col l10 m10 s12">
-                    <input required>
+                <div class="subject w3-row">
+                    <div class="w3-col l2 m12 s12">
+                        <label>主旨</label>
+                    </div>
+                    <div class="w3-col l10 m12 s12">
+                        <input required id="subject">
+                    </div>
                 </div>
-            </div>
-            <div class="feedback w3-row">
-                <div class="w3-col l2 m2 s12">
-                    <label>內容</label>
+                <div class="feedback w3-row">
+                    <div class="w3-col l2 m12 s12">
+                        <label>內容</label>
+                    </div>
+                    <div class="w3-col l10 m12 s12">
+                        <textarea required rows="10" cols="50" id="feedback_content"></textarea>
+                    </div>
                 </div>
-                <div class="w3-col l10 m10 s12">
-                    <textarea required rows="10" cols="100"></textarea>
+                <div class="submit w3-row">
+                    <button class="w3-right w3-btn w3-gray w3-round" style="border: black 2px solid;">送出</button>
                 </div>
-            </div>
-            <div class="submit w3-row">
-                <button class="w3-right w3-btn w3-gray w3-round" style="border: black 2px solid;">送出</button>
-            </div>
-        </form>
+            </form>
         </div>
 
     </div>
@@ -176,6 +171,46 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#connect").submit(function() { 
+                var status=0;
+                $.ajax({
+                    type: 'POST',
+                    url: 'php/new_FB.php',
+                    data: {
+                        'type': $("#type").val(),
+                        'name': $("#name").val(),
+                        'email': $("#email").val(),
+                        'phone': $("#phone").val(),
+                        'subject': $("#subject").val(),
+                        'content': $("#feedback_content").val(),
+                        'status': status
+
+                    },
+                    dataType: 'html',
+                    success: function(data) {
+
+                        console.log(data);
+                        if (data == "留言成功") {
+                            location.reload();
+                        } else {
+                            alert("留言失敗，請F12");
+                            console.log(data);
+
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert("資料沒有傳過去");
+                        console.log(jqXHR, ResponseText);
+
+                    }
+                }); 
+                return false;
+            });
+        });
+    </script>
 </body>
 
 </html>
