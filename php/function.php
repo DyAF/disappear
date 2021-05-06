@@ -82,9 +82,9 @@
         return $query_result;
     }
 
-    function update_HL($ID,$title,$url,$introduce,$tag01,$tag07,$tag08,$tag21,$tag27,$tag32)
+    function update_HL($ID,$title,$url,$introduce,$img,$tag01,$tag07,$tag08,$tag21,$tag27,$tag32)
     {
-        $sql="UPDATE `highlight` SET `title`='{$title}',`URL`='{$url}',`introduce`='{$introduce}',`tag01`='{$tag01}',`tag07`='{$tag07}',`tag08`='{$tag08}',`tag21`='{$tag21}',`tag27`='{$tag27}',`tag32`='{$tag32}' WHERE `ID`=$ID";
+        $sql="UPDATE `highlight` SET `title`='{$title}',`JPG`='{$img}',`URL`='{$url}',`introduce`='{$introduce}',`tag01`='{$tag01}',`tag07`='{$tag07}',`tag08`='{$tag08}',`tag21`='{$tag21}',`tag27`='{$tag27}',`tag32`='{$tag32}' WHERE `ID`=$ID";
         $sql_query_result=mysqli_query($_SESSION['link'],$sql);
         //有成功就會顯示1
         if($sql_query_result)
@@ -114,5 +114,119 @@
         }
         
         return $update_HL_result;
+    }
+
+    function cut_img()
+    {
+        $get_query_result = query();
+        foreach ($get_query_result as $HL) :
+            $jpg_array=str_split($HL['JPG']);
+            //$arr_len=count($jpg_array);
+            //print_r($jpg_array);
+            $str="";
+            for($x=10;$x<=count($jpg_array);$x++)
+            {
+                $str=$str.$jpg_array[$x];
+            }
+            //echo $str."<br>";
+            $str_arr[]=$str;
+            $str="";
+        endforeach;
+
+        return $str_arr;
+    }
+
+    function sort_name()
+    {
+        $sql="SELECT * FROM `highlight` ORDER by `title`";
+        $sql_query_result=mysqli_query($_SESSION['link'],$sql);
+        if(mysqli_num_rows($sql_query_result)>=1)
+        {
+            while($query_result_data=mysqli_fetch_assoc($sql_query_result))
+            {
+                $query_result[]=$query_result_data;
+            }
+        }
+        else
+        {
+            $query_result = "查無資料";
+        }
+
+        return $query_result;
+    }
+
+    function new_FB($type,$name,$email,$phone,$subject,$content,$status)
+    {
+        $status=0;
+        $new_FB_result=null;
+        $sql = "INSERT INTO `feedback`(`type`, `name`, `email`, `phone`, `subject`, `content`, `status`) 
+        VALUES ('{$type}','{$name}','{$email}','{$phone}','{$subject}','{$content}','{$status}')";
+        $sql_query_result=mysqli_query($_SESSION['link'],$sql);
+        //有成功就會顯示1
+        if($sql_query_result)
+        {
+            $new_FB_result="YES";
+        }
+        else
+        {
+            $new_FB_result=mysqli_error($_SESSION['link']);
+        }
+        
+        return $new_FB_result;
+    }
+    function FB_query()
+    {
+        
+        $sql="SELECT * FROM `feedback`";
+        $sql_query_result=mysqli_query($_SESSION['link'],$sql);
+        if(mysqli_num_rows($sql_query_result)>=1)
+        {
+            while($query_result_data=mysqli_fetch_assoc($sql_query_result))
+            {
+                $query_result[]=$query_result_data;
+            }
+        }
+        else
+        {
+            $query_result = "查無資料";
+        }
+
+        return $query_result;
+    }
+
+    function update_FB($ID,$status)
+    {
+        $sql="UPDATE `feedback` SET `status`='{$status}' WHERE `ID`=$ID";
+        $sql_query_result=mysqli_query($_SESSION['link'],$sql);
+        //有成功就會顯示1
+        if($sql_query_result)
+        {
+            $update_FB_result="YES";
+        }
+        else
+        {
+            $update_FB_result=mysqli_error($_SESSION['link']);
+        }
+        
+        return $update_FB_result;
+    }
+
+    function FB_undone()
+    {
+        $sql="SELECT * FROM `feedback` WHERE `status`=0";
+        $sql_query_result=mysqli_query($_SESSION['link'],$sql);
+        if(mysqli_num_rows($sql_query_result)>=1)
+        {
+            while($query_result_data=mysqli_fetch_assoc($sql_query_result))
+            {
+                $query_result[]=$query_result_data;
+            }
+        }
+        else
+        {
+            $query_result = "0";
+        }
+
+        return $query_result;
     }
 ?>

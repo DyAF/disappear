@@ -3,5 +3,5 @@
 
     session_destroy();
 
-    header("Location:../admin/HLmanage.php");
+    header("Location:../admin/login.php");
 ?>
