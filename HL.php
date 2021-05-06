@@ -1,3 +1,7 @@
+<?php
+include_once("php/function.php");
+$get_query_result = query();
+?>
 <!DOCTYPE html>
 <html lang="zh-TW">
 
@@ -13,11 +17,12 @@
     <meta name="description" content="描述">
     <meta name="author" content="作者">
 
-    <link rel="icon" type="image/png" href="image/LOGO.png" sizes="32x32">
+    <link rel="icon" type="../image/png" href="image/LOGO.png" sizes="32x32">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="css/lable.css">
 </head>
 
 <style>
@@ -43,72 +48,38 @@
 
     .content {
         margin-top: 60px;
-        background-color: blue;
+        margin-bottom: 150px;
     }
 
     .footer div {
-        width: 100%;
+        position: fixed;
+        bottom: 0px;
+        min-width: 100%;
         min-height: 95px;
     }
 
-    .toolbar {
-        padding: 20px;
-        padding-top: 40px;
-    }
 
-    .search {
-        /* background-color: blueviolet; */
-    }
-
-    .sort {
-        /* background-color: sandybrown; */
-    }
-
-    .search label,
-    .sort label {
-        font-size: large;
-        margin-right: 20px;
-    }
-
-    .search input {
-        padding: 5px 0;
-        width: 50%;
-        border: black 2px solid;
-    }
-
-    .search button {
-        padding: 5px 8px;
-        margin-left: -9px;
-        /* width: 50%; */
-        border: black 2px solid;
-    }
-
-    .sort select {
-        padding: 6px 0;
-        border: black 2px solid;
-    }
-    .HL-card{
-        width: 300px;
+    .HL-card {
+        width: 400px;
         border: black solid 3px;
         box-shadow: 0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%);
         margin: 10px;
+        margin-top: 50px;
     }
-    .HL-photo{
+
+    .HL-photo {
         border-right: black solid 2px;
-        height: 150px ;
+        height: 150px;
+    }
+
+    .toolbar {
+        margin-top: 100px;
     }
 </style>
 
 <body>
     <!-- 頂端列 -->
-    <div class="header w3-top w3-bar w3-card w3-dark-gray">
-        <a href="#" class="w3-bar-item w3-display-left">Disappear</a>
-        <div class="w3-display-right w3-center">
-            <a href="#" class="w3-bar-item w3-padding-large">關於我們</a>
-            <a href="#" class="w3-bar-item w3-padding-large active">精華片段</a>
-            <a href="#" class="w3-bar-item w3-padding-large">聯絡我們</a>
-        </div>
-    </div>
+    <?php include_once("menu.php")?>
 
     <!-- 內容 -->
     <div class="content container">
@@ -130,49 +101,29 @@
         </div>
         <div class="highlight w3-center">
             <h1>Our HighLight</h1>
-            <div class="w3-row" style="background-color: blueviolet;margin: 10px;margin-top: 30px;">
-                <div class="w3-col l4 m6 s12 HL-card" style="width: 400px;">
-                    <div class="w3-row">
-                        <div class="w3-col l4 m4 s12 w3-center HL-photo" style="background-color: brown;">照片</div>
-                        <div class="w3-col l8 m8 s12 w3-center HL-info" style="background-color:darkcyan;">
-                            <p>影片標題</p>
-                            <p>影片簡介</p>
-                            <p>影片標籤</p>
+            <div class="w3-row">
+                <?php foreach ($get_query_result as $HL) : ?>
+                    <!-- 正確版 -->
+                    <div class="w3-col l4 m6 s12 HL-card" style="width: 400px;">
+                        <div class="w3-row">
+                            <div class="w3-col l5 m5 s12 w3-center HL-photo w3-display-container"><a href="<?php echo $HL['URL'];?>"><img class="w3-display-middle" style="width: 150px;" src="image/<?php $jpg_array = str_split($HL['JPG']);for ($x = 10; $x <= count($jpg_array); $x++) :$str = $str . $jpg_array[$x];endfor;echo $str;$str = "";  ?>" alt=""></a></div>
+                            <div class="w3-col l7 m7 s12 w3-center HL-info">
+                                <p style="padding: 10px 0; border-bottom: solid;"><?php echo $HL['title']; ?></p>
+                                <p style="padding-bottom: 10px; border-bottom: solid;"><?php echo $HL['introduce']; ?></p>
+                                <p>
+                                    <?php if ($HL['tag01'] == 1) : ?><label class="label label--blue">老人</label><?php endif; ?>
+                                    <?php if ($HL['tag07'] == 1) : ?><label class="label label--orange">NeizKilor</label><?php endif; ?>
+                                    <?php if ($HL['tag08'] == 1) : ?><label class="label label--red">Jarven</label><?php endif; ?>
+                                    <?php if ($HL['tag21'] == 1) : ?><label class="label label--purple">大丁</label><?php endif; ?>
+                                    <?php if ($HL['tag27'] == 1) : ?><label class="label label--yellow">PIPI</label><?php endif; ?>
+                                    <?php if ($HL['tag32'] == 1) : ?><label class="label label--green">YouYuan</label><?php endif; ?>
+
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="w3-col l4 m6 s12 HL-card" style="width: 400px;" >
-                    <div class="w3-row">
-                        <div class="w3-col l4 m4 s12 w3-center HL-photo" style="background-color: brown;">照片</div>
-                        <div class="w3-col l8 m8 s12 w3-center HL-info" style="background-color:darkcyan;">
-                            <p>影片標題</p>
-                            <p>影片簡介</p>
-                            <p>影片標籤</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l4 m6 s12 HL-card" style="width: 400px;">
-                    <div class="w3-row">
-                        <div class="w3-col l4 m4 s12 w3-center HL-photo" style="background-color: brown;">照片</div>
-                        <div class="w3-col l8 m8 s12 w3-center HL-info" style="background-color:darkcyan;">
-                            <p>影片標題</p>
-                            <p>影片簡介</p>
-                            <p>影片標籤</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- 正確版 -->
-                <div class="w3-col l4 m6 s12 HL-card" style="width: 400px;">
-                    <div class="w3-row">
-                        <div class="w3-col l4 m4 s12 w3-center HL-photo" style="background-color: brown;">照片</div>
-                        <div class="w3-col l8 m8 s12 w3-center HL-info" style="background-color:darkcyan;">
-                            <p style="padding: 10px 0; border-bottom: solid;">影片標題</p>
-                            <p style="padding-bottom: 10px; border-bottom: solid;">影片簡介</p>
-                            <p>影片標籤</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- 正確版 -->
+                    <!-- 正確版 -->
+                <?php endforeach; ?>
             </div>
 
         </div>
@@ -189,6 +140,15 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        // $(document).ready(function() {
+        //     //var a = $("#test").html();
+        //     console.log("123");
+        // });
+        // var a = $("#test").text();
+        // console.log(a);
+    </script>
 </body>
 
 </html>
