@@ -142,14 +142,8 @@
 
 <body>
     <!-- 頂端列 -->
-    <div class="header w3-top w3-bar w3-card w3-dark-gray">
-        <a href="#" class="w3-bar-item w3-display-left">Disappear</a>
-        <div class="w3-display-right w3-center">
-            <a href="#" class=" active w3-bar-item w3-padding-large">關於我們</a>
-            <a href="#" class="w3-bar-item w3-padding-large">精華片段</a>
-            <a href="#" class="w3-bar-item w3-padding-large">聯絡我們</a>
-        </div>
-    </div>
+   
+    <?php include_once("menu.php")?>
 
     <!-- 內容 -->
     <div class="content container">
@@ -269,7 +263,7 @@
                                     <h1>YouYuan</h1>
                                 </div>
                                 <div class="introduce">
-                                    <p>科技/行政/財務</p>
+                                    <p>科技/剪輯/財務</p>
                                 </div>
                             </div>
                         </div>
