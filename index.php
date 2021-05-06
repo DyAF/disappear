@@ -43,7 +43,7 @@
     <div class="w3-display-middle w3-center w3-text-white">
         <p class="big">DISAPPEAR</p>
         <p class="middle">No One Answer</p>
-        <p class="middle"><a href="javascipt:void(0);">...</a></p>
+        <p class="middle"><a href="about.php">...</a></p>
     </div>
 
 
