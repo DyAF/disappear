@@ -2,7 +2,7 @@
 include_once("../php/function.php");
 if(isset($_SESSION['is_admin_login'])&&$_SESSION['is_admin_login'])
     {
-      header("Location:HLmanage.php");
+      header("Location:B-index.php");
     }
 
 ?>
@@ -94,7 +94,7 @@ if(isset($_SESSION['is_admin_login'])&&$_SESSION['is_admin_login'])
                         console.log(data);
                         if(data=="登入成功")
                         {
-                            window.location.href="HLmanage.php";
+                            window.location.href="index.php";
                         }
                         if(data=="登入失敗")
                         {
